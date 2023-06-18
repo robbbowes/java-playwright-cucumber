@@ -1,20 +1,21 @@
 package core.pages;
 
-import core.records.ElementKeyInfo;
+import core.pages.abstractions.CucumberPage;
 
-import java.util.Arrays;
-import java.util.List;
 
-public final class Home {
+import java.util.Map;
 
-    private static final List<ElementKeyInfo> LOCATORS = Arrays.asList(
-            new ElementKeyInfo("contacts header", "[data-id='contacts']"),
-            new ElementKeyInfo("create", "[data-id='add-button']"),
-            new ElementKeyInfo("search", "[data-id='search']"),
-            new ElementKeyInfo("header logo", "[data-id='header-logo']")
+public final class Home extends CucumberPage {
+
+    private static final Map<String, String> LOCATORS = Map.ofEntries(
+            Map.entry("contacts header", "[data-id='contacts']"),
+            Map.entry("create", "[data-id='add-button']"),
+            Map.entry("search", "[data-id='search']"),
+            Map.entry("header logo", "[data-id='header-logo']")
     );
 
-    public List<ElementKeyInfo> getLocators() {
+    public Map<String, String> getLocators() {
         return LOCATORS;
     }
+
 }

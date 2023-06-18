@@ -12,7 +12,7 @@ public class TestContext {
     private static final ThreadLocal<Browser> BROWSER_THREAD_LOCAL = new ThreadLocal<>();
     private static final ThreadLocal<BrowserContext> BROWSER_CONTEXT_THREAD_LOCAL = new ThreadLocal<>();
     private static final ThreadLocal<Page> PAGE_THREAD_LOCAL = new ThreadLocal<>();
-    private static Screen screen;
+    private static final ThreadLocal<Screen> SCREEN_THREAD_LOCAL = new ThreadLocal<>();
     private static GlobalConfig globalConfig;
 
     public void init() {
@@ -22,35 +22,24 @@ public class TestContext {
 
         initPlaywright();
         Browser browser = initBrowser(browserName);
-        BrowserContext browserContext = initBrowserContext();
-        Page page = initPage();
-        screen = new Screen(browser, browserContext, page);
+        BrowserContext browserContext = initBrowserContext(browser);
+        Page page = initPage(browserContext);
+        Screen screen = new Screen(browser, browserContext, page);
+        SCREEN_THREAD_LOCAL.set(screen);
 
         globalConfig = new GlobalConfig();
-    }
-
-    public Screen getScreen() {
-        return screen;
     }
 
     public GlobalConfig getGlobalConfig() {
         return globalConfig;
     }
 
+    public Screen getScreen() {
+        return SCREEN_THREAD_LOCAL.get();
+    }
+
     private static Playwright getPlaywright() {
         return PLAYWRIGHT_THREAD_LOCAL.get();
-    }
-
-    private static Browser getBrowser() {
-        return BROWSER_THREAD_LOCAL.get();
-    }
-
-    private static BrowserContext getBrowserContext() {
-        return BROWSER_CONTEXT_THREAD_LOCAL.get();
-    }
-
-    private static Page getPage() {
-        return PAGE_THREAD_LOCAL.get();
     }
 
     private void initPlaywright() {
@@ -82,31 +71,26 @@ public class TestContext {
         return BROWSER_THREAD_LOCAL.get();
     }
 
-    private BrowserContext initBrowserContext() {
+    private BrowserContext initBrowserContext(Browser browser) {
         Browser.NewContextOptions contextOptions = new Browser.NewContextOptions().setViewportSize(null);
-        Browser browser = BROWSER_THREAD_LOCAL.get();
         BrowserContext browserContext = browser.newContext(contextOptions);
         BROWSER_CONTEXT_THREAD_LOCAL.set(browserContext);
         return BROWSER_CONTEXT_THREAD_LOCAL.get();
     }
 
-    private Page initPage() {
-        Page page = getBrowserContext().newPage();
+    private Page initPage(BrowserContext browserContext) {
+        Page page = browserContext.newPage();
         PAGE_THREAD_LOCAL.set(page);
         return PAGE_THREAD_LOCAL.get();
     }
 
-//    public static void openPage(String url) {
-//        getPage().navigate(url);
-//    }
-
-    public static void closeBrowser() {
-        screen.getBrowser().close();
-        screen.getPage().close();
+    public void closeBrowser() {
+        getScreen().getBrowser().close();
+        getScreen().getPage().close();
     }
 
-    public static void quitPlaywright() {
-        if (screen.getPage() != null) {
+    public void quitPlaywright() {
+        if (getScreen().getPage() != null) {
             getPlaywright().close();
         }
     }

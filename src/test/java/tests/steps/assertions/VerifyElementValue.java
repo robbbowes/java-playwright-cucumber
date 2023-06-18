@@ -1,9 +1,13 @@
 package tests.steps.assertions;
 
-import core.config.GlobalConfig;
+import com.microsoft.playwright.Locator;
+import com.microsoft.playwright.Page;
 import core.config.Screen;
 import core.config.TestContext;
+import core.utils.PageElementLocator;
 import io.cucumber.java.en.Then;
+
+import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 public class VerifyElementValue extends TestContext {
 
@@ -13,12 +17,13 @@ public class VerifyElementValue extends TestContext {
         this.testContext = testContext;
     }
 
-
     @Then("the {string} should contain the text {string}")
-    public void containsText(String locator, String expectedText) {
-        System.out.println(locator);
-        System.out.println(expectedText);
+    public void containsText(String locatorKey, String expectedText) {
         Screen screen = getScreen();
-        GlobalConfig globalConfig = getGlobalConfig();
+        Page page = screen.getPage();
+        String elementLocator = PageElementLocator.getLocator(screen, locatorKey);
+        Locator locator = page.locator(elementLocator);
+        assertThat(locator).containsText(expectedText);
     }
+
 }

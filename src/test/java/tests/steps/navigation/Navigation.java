@@ -2,7 +2,9 @@ package tests.steps.navigation;
 
 import com.microsoft.playwright.Page;
 import core.config.GlobalConfig;
+import core.config.Screen;
 import core.config.TestContext;
+import core.pages.abstractions.CucumberPage;
 import core.utils.NavigationBehaviour;
 import io.cucumber.java.en.Given;
 
@@ -16,7 +18,9 @@ public class Navigation extends TestContext {
 
     @Given("I am on the {string} page")
     public void onPage(String pageName) {
-        Page page = testContext.getScreen().getPage();
+        Screen screen = testContext.getScreen();
+
+        Page page = screen.getPage();
         GlobalConfig globalConfig = testContext.getGlobalConfig();
 
         NavigationBehaviour.navigateToPage(page, pageName, globalConfig);
