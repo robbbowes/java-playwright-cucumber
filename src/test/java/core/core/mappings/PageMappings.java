@@ -1,5 +1,6 @@
 package core.core.mappings;
 
+import core.pages.CreateContact;
 import core.pages.Playground;
 import core.pages.abstractions.CucumberPage;
 import core.core.records.PageRouteInfo;
@@ -14,8 +15,8 @@ public final class PageMappings {
             Map.entry(Home.class,
                     new PageRouteInfo("/", Pattern.compile(""))),
 
-//            Map.entry("create contact",
-//                    new PageRouteInfo("/tasks/create", Pattern.compile("^/tasks/create$"))),
+            Map.entry(CreateContact.class,
+                    new PageRouteInfo("/tasks/create", Pattern.compile("^/tasks/create$"))),
 
             Map.entry(Playground.class,
                     new PageRouteInfo("/playground", Pattern.compile("^/playground$")))

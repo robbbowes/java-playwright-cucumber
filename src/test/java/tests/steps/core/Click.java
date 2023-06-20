@@ -1,13 +1,8 @@
 package tests.steps.core;
 
 import com.microsoft.playwright.Locator;
-import com.microsoft.playwright.Page;
-import com.microsoft.playwright.options.LoadState;
-import core.core.config.Screen;
 import core.core.config.TestContext;
-import core.utils.NavigationBehaviour;
 import core.utils.PageElementLocator;
-import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class Click {

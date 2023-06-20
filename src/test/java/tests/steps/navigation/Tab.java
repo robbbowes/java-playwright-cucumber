@@ -4,6 +4,7 @@ import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.LoadState;
 import core.core.config.Screen;
 import core.core.config.TestContext;
+import core.pages.abstractions.CucumberPage;
 import core.utils.NavigationBehaviour;
 import core.utils.PageElementLocator;
 import core.utils.RegexPatterns;
@@ -23,7 +24,10 @@ public class Tab {
         String numberString = tabNumber.replaceAll(RegexPatterns.ONLY_NUMBERS.pattern(), "");
         int tabIndex = Integer.parseInt(numberString) - 1;
         Page currentTab = testContext.getScreen().getContext().pages().get(tabIndex);
+        currentTab.bringToFront();
         this.testContext.getScreen().setCurrentTab(currentTab);
+        Class<? extends CucumberPage> currentTabClass = NavigationBehaviour.getCurrentTabClass(testContext);
+        this.testContext.getScreen().setCurrentTabClass(currentTabClass);
     }
 
     @Then("I click the {string} the {string} page is opened in a new tab")
@@ -34,6 +38,7 @@ public class Tab {
         screen.getContext().pages().add(newTab);
 
         newTab.waitForLoadState(LoadState.DOMCONTENTLOADED);
+        newTab.bringToFront();
         testContext.getScreen().setCurrentTab(newTab);
 
         NavigationBehaviour.waitForCorrectPage(testContext, pageId);

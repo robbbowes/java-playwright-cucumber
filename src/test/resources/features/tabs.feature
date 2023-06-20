@@ -15,3 +15,6 @@ Feature: As a user I expect to be able to switch between tabs
     When I switch to the "1st" tab
     And I click the "header logo"
     Then I am redirected to the "Home" page
+    When I click the "create button"
+    Then I am redirected to the "CreateContact" page
+
