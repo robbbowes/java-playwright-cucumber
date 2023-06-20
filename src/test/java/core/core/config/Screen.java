@@ -1,4 +1,4 @@
-package core.config;
+package core.core.config;
 
 import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserContext;
@@ -31,7 +31,6 @@ public class Screen {
     public Page getPage() {
         return page;
     }
-
 
     public Class<? extends CucumberPage> getCurrentPageClass() {
         return currentPageClass;

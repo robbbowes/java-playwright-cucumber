@@ -2,8 +2,8 @@ package core.pages.abstractions;
 
 import java.util.Map;
 
-public abstract class CucumberPage {
+public interface CucumberPage {
 
-    public abstract Map<String, String> getLocators();
+    Map<String, String> getLocators();
 
 }

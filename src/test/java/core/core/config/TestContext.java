@@ -1,4 +1,4 @@
-package core.config;
+package core.core.config;
 
 import com.microsoft.playwright.*;
 import core.utils.PropertiesReader;

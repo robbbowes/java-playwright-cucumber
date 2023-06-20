@@ -1,30 +1,34 @@
 package tests.steps.navigation;
 
 import com.microsoft.playwright.Page;
-import core.config.GlobalConfig;
-import core.config.Screen;
-import core.config.TestContext;
-import core.pages.abstractions.CucumberPage;
+import core.core.config.GlobalConfig;
+import core.core.config.Screen;
+import core.core.config.TestContext;
 import core.utils.NavigationBehaviour;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 
-public class Navigation extends TestContext {
+public class Navigation {
 
-    private TestContext testContext;
+    private final TestContext testContext;
 
     public Navigation(TestContext testContext) {
         this.testContext = testContext;
     }
 
     @Given("I am on the {string} page")
-    public void onPage(String pageName) {
-        Screen screen = testContext.getScreen();
+    public void onPage(String pageId) {
+//        final Screen screen = this.testContext.getScreen();
+//        final Page page = screen.getPage();
+//        final GlobalConfig globalConfig = this.testContext.getGlobalConfig();
+        NavigationBehaviour.navigateToPage(this.testContext, pageId);
+    }
 
-        Page page = screen.getPage();
-        GlobalConfig globalConfig = testContext.getGlobalConfig();
-
-        NavigationBehaviour.navigateToPage(page, pageName, globalConfig);
-
-        System.out.println("I'm on the " + pageName);
+    @Then("I am redirected to the {string} page")
+    public void redirected(String pageId) {
+//        final Screen screen = this.testContext.getScreen();
+//        final Page page = screen.getPage();
+//        final GlobalConfig globalConfig = this.testContext.getGlobalConfig();
+        NavigationBehaviour.waitForCorrectPage(this.testContext, pageId);
     }
 }

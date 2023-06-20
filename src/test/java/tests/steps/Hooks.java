@@ -1,14 +1,13 @@
 package tests.steps;
 
-import core.config.Screen;
-import core.config.TestContext;
+import core.core.config.TestContext;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 
-public class Hooks extends TestContext {
+public class Hooks {
 
-    private TestContext testContext;
+    private final TestContext testContext;
 
     public Hooks(TestContext testContext) {
         this.testContext = testContext;
@@ -17,12 +16,13 @@ public class Hooks extends TestContext {
     @Before
     public void setup(Scenario scenario) {
         System.out.println(scenario.getName());
-        testContext.init();
+        this.testContext.init();
     }
 
     @After
     public void teardown() {
-        testContext.closeBrowser();
-        testContext.quitPlaywright();
+        this.testContext.closeBrowser();
+        this.testContext.quitPlaywright();
     }
+
 }

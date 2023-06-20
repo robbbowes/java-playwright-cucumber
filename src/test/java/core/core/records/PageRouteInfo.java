@@ -1,4 +1,4 @@
-package core.records;
+package core.core.records;
 
 import java.util.regex.Pattern;
 

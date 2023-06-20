@@ -1,8 +1,8 @@
-package core.pages.mappings;
+package core.core.mappings;
 
 import core.pages.Playground;
 import core.pages.abstractions.CucumberPage;
-import core.records.PageRouteInfo;
+import core.core.records.PageRouteInfo;
 import core.pages.Home;
 
 import java.util.Map;
