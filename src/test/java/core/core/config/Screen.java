@@ -8,16 +8,16 @@ import core.pages.abstractions.CucumberPage;
 
 public class Screen {
 
-    private Browser browser;
-    private BrowserContext context;
-    private Page page;
-    private Class<? extends CucumberPage> currentPageClass;
+    private final Browser browser;
+    private final BrowserContext context;
+    private Page currentTab;
+    private Class<? extends CucumberPage> currentTabClass;
 
-    public Screen(Browser browser, BrowserContext context, Page page) {
+    public Screen(Browser browser, BrowserContext context, Page currentTab) {
         this.browser = browser;
         this.context = context;
-        this.page = page;
-        this.currentPageClass = Home.class;
+        this.currentTab = currentTab;
+        this.currentTabClass = Home.class;
     }
 
     public Browser getBrowser() {
@@ -28,15 +28,19 @@ public class Screen {
         return context;
     }
 
-    public Page getPage() {
-        return page;
+    public Page getCurrentTab() {
+        return currentTab;
     }
 
-    public Class<? extends CucumberPage> getCurrentPageClass() {
-        return currentPageClass;
+    public void setCurrentTab(Page tab) {
+        currentTab = tab;
     }
 
-    public void setCurrentPageClass(Class<? extends CucumberPage> currentPageClass) {
-        this.currentPageClass = currentPageClass;
+    public Class<? extends CucumberPage> getCurrentTabClass() {
+        return currentTabClass;
+    }
+
+    public void setCurrentTabClass(Class<? extends CucumberPage> currentTabClass) {
+        this.currentTabClass = currentTabClass;
     }
 }

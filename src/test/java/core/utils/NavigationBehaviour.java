@@ -11,7 +11,7 @@ import java.util.Map;
 public class NavigationBehaviour {
 
     public static void navigateToPage(TestContext testContext, String pageId) {
-        final Page page = testContext.getScreen().getPage();
+        final Page page = testContext.getScreen().getCurrentTab();
         final GlobalConfig config = testContext.getGlobalConfig();
 
         Map<Class<? extends CucumberPage>, PageRouteInfo> routeMappings = config.getRouteMappings();
@@ -30,7 +30,7 @@ public class NavigationBehaviour {
         final String url = config.getBaseUrl() + routeInfo.route();
         page.navigate(url);
         page.waitForURL(routeInfo.pattern());
-        testContext.getScreen().setCurrentPageClass(pageClass);
+        testContext.getScreen().setCurrentTabClass(pageClass);
     }
 
     public static void waitForCorrectPage(TestContext testContext, String pageId) {
@@ -50,8 +50,8 @@ public class NavigationBehaviour {
 
         assert routeInfo != null;
         final String url = baseUrl + routeInfo.route();
-        testContext.getScreen().getPage().waitForURL(url);
-        testContext.getScreen().setCurrentPageClass(pageClass);
+        testContext.getScreen().getCurrentTab().waitForURL(url);
+        testContext.getScreen().setCurrentTabClass(pageClass);
     }
 
 }

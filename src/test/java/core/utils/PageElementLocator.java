@@ -13,7 +13,7 @@ public class PageElementLocator {
 
     public static Locator getLocator(TestContext testContext, String locatorKey) {
         Screen screen = testContext.getScreen();
-        Page page = screen.getPage();
+        Page page = screen.getCurrentTab();
         String elementLocator = PageElementLocator.queryClassForLocator(screen, locatorKey);
         return page.locator(elementLocator);
     }
@@ -21,7 +21,7 @@ public class PageElementLocator {
     private static String queryClassForLocator(Screen screen, String locatorKey) {
         Map<String, String> locators = null;
         try {
-            Class<? extends CucumberPage> currentPageClass = screen.getCurrentPageClass();
+            Class<? extends CucumberPage> currentPageClass = screen.getCurrentTabClass();
             Constructor<? extends CucumberPage> constructor = currentPageClass.getConstructor();
             CucumberPage cucumberPage = constructor.newInstance();
             locators = cucumberPage.getLocators();
@@ -29,8 +29,7 @@ public class PageElementLocator {
             e.printStackTrace();
         }
         assert locators != null;
-        String locator = locators.get(locatorKey);
-        return locator;
+        return locators.get(locatorKey);
     }
 
 }

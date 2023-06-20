@@ -1,15 +1,14 @@
 package tests.steps.core;
 
-import com.microsoft.playwright.BrowserContext;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.options.LoadState;
 import core.core.config.Screen;
 import core.core.config.TestContext;
+import core.utils.NavigationBehaviour;
 import core.utils.PageElementLocator;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
-import java.util.List;
 
 public class Click {
 
@@ -25,10 +24,4 @@ public class Click {
         locator.click();
     }
 
-    @Then("I click the {string} a new tab is opened")
-    public void newTab(String locatorKey) {
-        Screen screen = this.testContext.getScreen();
-        Page newTab = screen.getPage().waitForPopup(() -> PageElementLocator.getLocator(this.testContext, locatorKey).click());
-        screen.getContext().pages().add(newTab);
-    }
 }

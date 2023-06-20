@@ -1,4 +1,4 @@
-Feature: As a user I expect to be able to navigate to the home page
+Feature: As a user I expect to be able to switch between tabs
 
   @smoke
   @regression
@@ -10,5 +10,8 @@ Feature: As a user I expect to be able to navigate to the home page
     Then the "contacts header" should not equal the text "contact"
     When I click the "playground button"
     Then I am redirected to the "Playground" page
-    And I click the "new tab button" a new tab is opened
-    When I switch to the "2nd" tab
+    And I click the "new tab button" the "Home" page is opened in a new tab
+    When I click the "playground button"
+    When I switch to the "1st" tab
+    And I click the "header logo"
+    Then I am redirected to the "Home" page

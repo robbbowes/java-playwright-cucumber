@@ -86,11 +86,11 @@ public class TestContext {
 
     public void closeBrowser() {
         getScreen().getBrowser().close();
-        getScreen().getPage().close();
+        getScreen().getCurrentTab().close();
     }
 
     public void quitPlaywright() {
-        if (getScreen().getPage() != null) {
+        if (getScreen().getCurrentTab() != null) {
             getPlaywright().close();
         }
     }
