@@ -20,21 +20,23 @@ public class Tab {
     }
 
     @When("^I switch to the \"([0-9]+st|[0-9]+nd|[0-9]+rd|[0-9]+th)\" tab$")
-    public void onPage(String tabNumber) {
+    public void onPage(String tabNumber) throws ReflectiveOperationException {
         String numberString = tabNumber.replaceAll(RegexPatterns.ONLY_NUMBERS.pattern(), "");
         int tabIndex = Integer.parseInt(numberString) - 1;
         Page currentTab = testContext.getScreen().getContext().pages().get(tabIndex);
         currentTab.bringToFront();
         this.testContext.getScreen().setCurrentTab(currentTab);
-        Class<? extends CucumberPage> currentTabClass = NavigationBehaviour.getCurrentTabClass(testContext);
+        CucumberPage currentTabClass = NavigationBehaviour.getCurrentTabClass(testContext);
         this.testContext.getScreen().setCurrentTabClass(currentTabClass);
     }
 
     @Then("I click the {string} the {string} page is opened in a new tab")
-    public void newTab(String locatorKey, String pageId) {
+    public void newTab(String locatorKey, String pageId) throws ReflectiveOperationException {
         Screen screen = this.testContext.getScreen();
 
-        Page newTab = screen.getCurrentTab().waitForPopup(() -> PageElementLocator.getLocator(this.testContext, locatorKey).click());
+        Page newTab = screen.getCurrentTab().waitForPopup(()
+                -> PageElementLocator.getLocator(this.testContext, locatorKey).click());
+
         screen.getContext().pages().add(newTab);
 
         newTab.waitForLoadState(LoadState.DOMCONTENTLOADED);

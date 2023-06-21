@@ -4,9 +4,7 @@ import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import core.core.config.Screen;
 import core.core.config.TestContext;
-import core.pages.abstractions.CucumberPage;
-
-import java.lang.reflect.Constructor;
+git
 import java.util.Map;
 
 public class PageElementLocator {
@@ -19,15 +17,7 @@ public class PageElementLocator {
     }
 
     private static String queryClassForLocator(Screen screen, String locatorKey) {
-        Map<String, String> locators = null;
-        try {
-            Class<? extends CucumberPage> currentPageClass = screen.getCurrentTabClass();
-            Constructor<? extends CucumberPage> constructor = currentPageClass.getConstructor();
-            CucumberPage cucumberPage = constructor.newInstance();
-            locators = cucumberPage.getLocators();
-        } catch (ReflectiveOperationException e) {
-            e.printStackTrace();
-        }
+        Map<String, String> locators = screen.getCurrentTabClass().getLocators();
         assert locators != null;
         return locators.get(locatorKey);
     }

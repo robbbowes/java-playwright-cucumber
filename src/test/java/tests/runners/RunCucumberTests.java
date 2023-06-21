@@ -12,7 +12,7 @@ import org.testng.annotations.DataProvider;
                 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
         }
 )
-public class RunCucumber extends AbstractTestNGCucumberTests {
+public class RunCucumberTests extends AbstractTestNGCucumberTests {
 
         @Override
         @DataProvider(parallel = true)
