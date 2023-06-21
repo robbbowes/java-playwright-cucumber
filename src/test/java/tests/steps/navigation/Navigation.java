@@ -14,12 +14,12 @@ public class Navigation {
     }
 
     @Given("I am on the {string} page")
-    public void onPage(String pageId) throws ReflectiveOperationException {
+    public void onPage(String pageId) {
         NavigationBehaviour.navigateToPage(this.testContext, pageId);
     }
 
     @Then("I am redirected to the {string} page")
-    public void redirected(String pageId) throws ReflectiveOperationException {
+    public void redirected(String pageId) {
         NavigationBehaviour.waitForCorrectPage(this.testContext, pageId);
     }
 }

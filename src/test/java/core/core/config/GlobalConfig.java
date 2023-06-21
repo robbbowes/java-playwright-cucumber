@@ -11,7 +11,7 @@ import java.util.Properties;
 public class GlobalConfig {
 
     private final Properties envProps;
-    private final Map<Class<? extends CucumberPage>, PageRouteInfo> routeMappings;
+    private final Map<CucumberPage, PageRouteInfo> routeMappings;
 
     public GlobalConfig() {
         envProps = PropertiesReader.read("config/environment.properties");
@@ -22,7 +22,7 @@ public class GlobalConfig {
         return envProps.getProperty("url");
     }
 
-    public Map<Class<? extends CucumberPage>, PageRouteInfo> getRouteMappings() {
+    public Map<CucumberPage, PageRouteInfo> getRouteMappings() {
         return routeMappings;
     }
 }

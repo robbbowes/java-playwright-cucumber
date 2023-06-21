@@ -17,7 +17,9 @@ public class PageElementLocator {
     }
 
     private static String queryClassForLocator(Screen screen, String locatorKey) {
-        Map<String, String> locators = screen.getCurrentTabClass().getLocators();
+        final Map<String, String> locators = screen.getCurrentTabInfo()
+                .currentTabClass()
+                .getLocators();
         assert locators != null;
         return locators.get(locatorKey);
     }

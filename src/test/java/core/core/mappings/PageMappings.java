@@ -11,18 +11,18 @@ import java.util.regex.Pattern;
 
 public final class PageMappings {
 
-    private static final Map<Class<? extends CucumberPage>, PageRouteInfo> MAP = Map.ofEntries(
-            Map.entry(Home.class,
+    private static final Map<CucumberPage, PageRouteInfo> MAP = Map.ofEntries(
+            Map.entry(new Home(),
                     new PageRouteInfo("/", Pattern.compile(""))),
 
-            Map.entry(CreateContact.class,
+            Map.entry(new CreateContact(),
                     new PageRouteInfo("/tasks/create", Pattern.compile("^/tasks/create$"))),
 
-            Map.entry(Playground.class,
+            Map.entry(new Playground(),
                     new PageRouteInfo("/playground", Pattern.compile("^/playground$")))
     );
 
-    public static Map<Class<? extends CucumberPage>, PageRouteInfo> getMappings() {
+    public static Map<CucumberPage, PageRouteInfo> getMappings() {
         return MAP;
     }
 }
