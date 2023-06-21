@@ -4,7 +4,7 @@ import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import core.core.config.Screen;
 import core.core.config.TestContext;
-git
+
 import java.util.Map;
 
 public class PageElementLocator {
