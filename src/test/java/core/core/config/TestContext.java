@@ -50,6 +50,8 @@ public class TestContext {
     private Browser initBrowser(final String browserName) {
         ArrayList<String> args = new ArrayList<>();
         args.add("--start-maximized");
+        args.add("--parallel 3");
+        args.add("-f json:./reports/report.json");
 
         Browser browser;
         switch (browserName) {
