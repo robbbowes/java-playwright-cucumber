@@ -1,7 +1,7 @@
-package tests.steps.core;
+package tests.steps.actions;
 
 import com.microsoft.playwright.Locator;
-import core.core.config.TestContext;
+import core.setup.config.TestContext;
 import core.utils.PageElementLocator;
 import io.cucumber.java.en.When;
 

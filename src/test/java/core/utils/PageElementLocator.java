@@ -2,8 +2,8 @@ package core.utils;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
-import core.core.config.Screen;
-import core.core.config.TestContext;
+import core.setup.config.Screen;
+import core.setup.config.TestContext;
 
 import java.util.Map;
 
@@ -11,7 +11,7 @@ public class PageElementLocator {
 
     public static Locator getLocator(TestContext testContext, String locatorKey) {
         Screen screen = testContext.getScreen();
-        Page page = screen.getCurrentTab();
+        Page page = screen.getCurrentTabInfo().currentTab();
         String elementLocator = PageElementLocator.queryClassForLocator(screen, locatorKey);
         return page.locator(elementLocator);
     }

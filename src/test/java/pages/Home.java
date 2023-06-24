@@ -1,6 +1,6 @@
-package core.pages;
+package pages;
 
-import core.pages.abstractions.CucumberPage;
+import pages.abstractions.CucumberPage;
 
 
 import java.util.Map;

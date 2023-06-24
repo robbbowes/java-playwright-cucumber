@@ -1,8 +1,8 @@
-package core.core.config;
+package core.setup.config;
 
-import core.pages.abstractions.CucumberPage;
-import core.core.records.PageRouteInfo;
-import core.core.mappings.PageMappings;
+import pages.abstractions.CucumberPage;
+import core.setup.records.PageRouteInfo;
+import pages.mappings.PageMappings;
 import core.utils.PropertiesReader;
 
 import java.util.Map;

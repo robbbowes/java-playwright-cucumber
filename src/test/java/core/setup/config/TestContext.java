@@ -1,4 +1,4 @@
-package core.core.config;
+package core.setup.config;
 
 import com.microsoft.playwright.*;
 import core.utils.PropertiesReader;
@@ -88,11 +88,11 @@ public class TestContext {
 
     public void closeBrowser() {
         getScreen().getBrowser().close();
-        getScreen().getCurrentTab().close();
+        getScreen().getCurrentTabInfo().currentTab().close();
     }
 
     public void quitPlaywright() {
-        if (getScreen().getCurrentTab() != null) {
+        if (getScreen().getCurrentTabInfo().currentTab() != null) {
             getPlaywright().close();
         }
     }

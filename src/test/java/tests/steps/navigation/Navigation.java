@@ -1,6 +1,6 @@
 package tests.steps.navigation;
 
-import core.core.config.TestContext;
+import core.setup.config.TestContext;
 import core.utils.NavigationBehaviour;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

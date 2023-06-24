@@ -1,17 +1,17 @@
 package tests.steps.assertions;
 
 import com.microsoft.playwright.Locator;
-import core.core.config.TestContext;
+import core.setup.config.TestContext;
 import core.utils.PageElementLocator;
 import io.cucumber.java.en.Then;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
-public class VerifyElementValue {
+public class ElementText {
 
     private final TestContext testContext;
 
-    public VerifyElementValue(TestContext testContext) {
+    public ElementText(TestContext testContext) {
         this.testContext = testContext;
     }
 

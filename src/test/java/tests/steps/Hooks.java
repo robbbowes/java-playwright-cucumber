@@ -1,6 +1,6 @@
 package tests.steps;
 
-import core.core.config.TestContext;
+import core.setup.config.TestContext;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;

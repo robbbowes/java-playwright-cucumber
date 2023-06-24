@@ -1,4 +1,4 @@
-package core.pages.abstractions;
+package pages.abstractions;
 
 import java.util.Map;
 
