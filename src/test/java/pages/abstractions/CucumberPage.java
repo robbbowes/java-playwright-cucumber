@@ -2,10 +2,16 @@ package pages.abstractions;
 
 import java.util.Map;
 
-public interface CucumberPage {
+public abstract class CucumberPage {
 
-    Map<String, String> getLocators();
+    private final Map<String, String> locators;
 
-    Map<String, String> getSubLocators();
+    protected CucumberPage(Map<String, String> locators) {
+        this.locators = locators;
+    }
+
+    public Map<String, String> getLocators() {
+        return locators;
+    }
 
 }

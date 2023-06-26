@@ -4,7 +4,7 @@ import pages.abstractions.CucumberPage;
 
 import java.util.Map;
 
-public class Playground implements CucumberPage {
+public class Playground extends CucumberPage {
 
     private static final Map<String, String> LOCATORS = Map.ofEntries(
             Map.entry("movies autocomplete", "input#movies-input"),
@@ -12,15 +12,8 @@ public class Playground implements CucumberPage {
             Map.entry("header logo", "[data-id='header-logo']")
     );
 
-    private static final Map<String, String> SUB_LOCATORS = Map.ofEntries(
-
-    );
-
-    public Map<String, String> getLocators() {
-        return LOCATORS;
+    public Playground() {
+        super(LOCATORS);
     }
 
-    public Map<String, String> getSubLocators() {
-        return SUB_LOCATORS;
-    }
 }

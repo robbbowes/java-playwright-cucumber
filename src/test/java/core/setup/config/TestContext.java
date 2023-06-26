@@ -24,6 +24,8 @@ public class TestContext {
         Browser browser = initBrowser(browserName);
         BrowserContext browserContext = initBrowserContext(browser);
         Page page = initPage(browserContext);
+        page.onDialog(Dialog::accept);
+
         Screen screen = new Screen(browser, browserContext, page);
         SCREEN_THREAD_LOCAL.set(screen);
 

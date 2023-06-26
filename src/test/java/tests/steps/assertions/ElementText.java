@@ -4,6 +4,7 @@ import com.microsoft.playwright.Locator;
 import core.setup.config.TestContext;
 import core.utils.PageElementLocator;
 import io.cucumber.java.en.Then;
+import org.testng.Assert;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
@@ -37,6 +38,17 @@ public class ElementText {
     public void shouldNotEqualText(String locatorKey, String unexpectedText) {
         Locator locator = PageElementLocator.getLocator(this.testContext, locatorKey);
         assertThat(locator).not().hasText(unexpectedText);
+    }
+
+    @Then("the {string} on the aforementioned {string} should be {string}")
+    public void valueWithTextIsVisible(String childLocatorKey, String locatorLookupKey, String text) {
+        Locator parentLocator = this.testContext.getScreen().getLocatorHistory().get(locatorLookupKey);
+        Assert.assertNotNull(String.format("No locator found for '%s'", locatorLookupKey));
+
+        Locator childLocator = PageElementLocator.getLocator(this.testContext, childLocatorKey);
+
+        String actualText = parentLocator.locator(childLocator).textContent();
+        Assert.assertEquals(actualText, text);
     }
 
 

@@ -16,7 +16,7 @@ public class Alert {
 
     @When("I accept the alert")
     public void acceptAlert() {
-        this.testContext.getScreen().getCurrentTabInfo().currentTab().onceDialog((Dialog::accept));
+        this.testContext.getScreen().getCurrentTabInfo().currentTab().onDialog(Dialog::accept);
     }
 
 }

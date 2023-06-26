@@ -4,7 +4,7 @@ import pages.abstractions.CucumberPage;
 
 import java.util.Map;
 
-public class CreateContact implements CucumberPage {
+public class CreateContact extends CucumberPage {
 
     private static final Map<String, String> LOCATORS = Map.ofEntries(
         Map.entry("name", "input[data-id='name']"),
@@ -15,16 +15,8 @@ public class CreateContact implements CucumberPage {
         Map.entry("save button", "button[data-id='save-button']")
     );
 
-    private static final Map<String, String> SUB_LOCATORS = Map.ofEntries(
-
-    );
-
-
-    public Map<String, String> getLocators() {
-        return LOCATORS;
+    public CreateContact() {
+        super(LOCATORS);
     }
 
-    public Map<String, String> getSubLocators() {
-        return SUB_LOCATORS;
-    }
 }

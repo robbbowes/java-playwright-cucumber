@@ -5,7 +5,7 @@ import pages.abstractions.CucumberPage;
 
 import java.util.Map;
 
-public final class Home implements CucumberPage {
+public final class Home extends CucumberPage {
 
     private static final Map<String, String> LOCATORS = Map.ofEntries(
             Map.entry("contacts header", "[data-id='contacts']"),
@@ -19,16 +19,8 @@ public final class Home implements CucumberPage {
             Map.entry("gender value", "[data-id='gender']")
     );
 
-    private static final Map<String, String> SUB_LOCATORS = Map.ofEntries(
-
-    );
-
-    public Map<String, String> getLocators() {
-        return LOCATORS;
-    }
-
-    public Map<String, String> getSubLocators() {
-        return SUB_LOCATORS;
+    public Home() {
+        super(LOCATORS);
     }
 
 }
