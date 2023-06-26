@@ -12,11 +12,20 @@ public final class Home implements CucumberPage {
             Map.entry("create button", "[data-id='add-button']"),
             Map.entry("search input", "[data-id='search']"),
             Map.entry("header logo", "[data-id='header-logo']"),
-            Map.entry("playground button", "[data-id='playground-button']")
+            Map.entry("playground button", "[data-id='playground-button']"),
+            Map.entry("contact item", "[data-id='contact']")
+    );
+
+    private static final Map<String, String> SUB_LOCATORS = Map.ofEntries(
+
     );
 
     public Map<String, String> getLocators() {
         return LOCATORS;
+    }
+
+    public Map<String, String> getSubLocators() {
+        return SUB_LOCATORS;
     }
 
 }
