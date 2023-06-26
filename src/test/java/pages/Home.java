@@ -15,7 +15,8 @@ public final class Home implements CucumberPage {
             Map.entry("playground button", "[data-id='playground-button']"),
             Map.entry("contact item", "[data-id='contact']"),
             Map.entry("delete button", "button[data-id='delete-button']"),
-            Map.entry("name", "[data-id='name']")
+            Map.entry("name", "[data-id='name']"),
+            Map.entry("gender value", "[data-id='gender']")
     );
 
     private static final Map<String, String> SUB_LOCATORS = Map.ofEntries(
