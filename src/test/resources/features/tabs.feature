@@ -2,7 +2,7 @@ Feature: As a user I expect to be able to switch between tabs
 
   @smoke
   @regression
-    Scenario: As a user I expect to be able to see the header logo
+    Scenario: As a user I expect to be able to open, close, and switch between tabs
     Given I am on the "Home" page
     Then the "contacts header" should contain the text "Conta"
     Then the "contacts header" should not contain the text "Bloop bloop"

@@ -10,10 +10,11 @@ public final class Home implements CucumberPage {
     private static final Map<String, String> LOCATORS = Map.ofEntries(
             Map.entry("contacts header", "[data-id='contacts']"),
             Map.entry("create button", "[data-id='add-button']"),
-            Map.entry("search input", "[data-id='search']"),
+            Map.entry("search", "[data-id='search']"),
             Map.entry("header logo", "[data-id='header-logo']"),
             Map.entry("playground button", "[data-id='playground-button']"),
-            Map.entry("contact item", "[data-id='contact']")
+            Map.entry("contact item", "[data-id='contact']"),
+            Map.entry("delete button", "button[data-id='delete-button']")
     );
 
     private static final Map<String, String> SUB_LOCATORS = Map.ofEntries(
