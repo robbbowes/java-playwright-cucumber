@@ -2,7 +2,6 @@ package tests.steps.navigation;
 
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.LoadState;
-import core.setup.config.GlobalConfig;
 import core.setup.config.Screen;
 import core.setup.config.TestContext;
 import pages.abstractions.CucumberPage;
@@ -26,19 +25,16 @@ public class Tab {
         final int tabIndex = Integer.parseInt(numberString) - 1;
 
         final Page currentTab = this.testContext.getScreen().getContext().pages().get(tabIndex);
-        final GlobalConfig config = this.testContext.getGlobalConfig();
 
         currentTab.bringToFront();
 
-        final CucumberPage currentTabClass = NavigationBehaviour.getCurrentTabClass(config, currentTab);
+        final CucumberPage currentTabClass = NavigationBehaviour.getCurrentTabClass(testContext.getMappings(), currentTab);
         this.testContext.getScreen().setCurrentTabInfo(currentTab, currentTabClass);
     }
 
     @Then("I click the {string} the {string} page is opened in a new tab")
     public void newTab(String locatorKey, String pageId) {
         final Screen screen = this.testContext.getScreen();
-        final GlobalConfig config = this.testContext.getGlobalConfig();
-
         final Page newTab = screen.getCurrentTabInfo().currentTab().waitForPopup(()
                 -> PageElementLocator.getLocator(this.testContext, locatorKey).click());
 
@@ -47,7 +43,7 @@ public class Tab {
         newTab.waitForLoadState(LoadState.DOMCONTENTLOADED);
         newTab.bringToFront();
 
-        final CucumberPage currentTabClass = NavigationBehaviour.getCurrentTabClass(config, newTab);
+        final CucumberPage currentTabClass = NavigationBehaviour.getCurrentTabClass(testContext.getMappings(), newTab);
         testContext.getScreen().setCurrentTabInfo(newTab, currentTabClass);
 
         NavigationBehaviour.waitForCorrectPage(testContext, pageId);

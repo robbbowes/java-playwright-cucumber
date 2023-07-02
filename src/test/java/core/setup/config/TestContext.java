@@ -1,9 +1,12 @@
 package core.setup.config;
 
 import com.microsoft.playwright.*;
+import core.setup.records.PageRouteInfo;
 import core.utils.PropertiesReader;
+import pages.abstractions.CucumberPage;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Properties;
 
 public class TestContext {
@@ -13,12 +16,15 @@ public class TestContext {
     private static final ThreadLocal<BrowserContext> BROWSER_CONTEXT_THREAD_LOCAL = new ThreadLocal<>();
     private static final ThreadLocal<Page> PAGE_THREAD_LOCAL = new ThreadLocal<>();
     private static final ThreadLocal<Screen> SCREEN_THREAD_LOCAL = new ThreadLocal<>();
-    private static GlobalConfig globalConfig;
+    private Map<CucumberPage, PageRouteInfo> mappings;
+    private String browserName;
+    private String baseUrl;
 
     public void init() {
         final Properties driverProperties = PropertiesReader.read("config/environment.properties");
-        final String browserName = driverProperties.getProperty("browser");
-
+        browserName = driverProperties.getProperty("browser");
+        baseUrl = driverProperties.getProperty("url");
+        mappings = PageMappings.getMappings();
 
         initPlaywright();
         Browser browser = initBrowser(browserName);
@@ -28,16 +34,22 @@ public class TestContext {
 
         Screen screen = new Screen(browser, browserContext, page);
         SCREEN_THREAD_LOCAL.set(screen);
-
-        globalConfig = new GlobalConfig();
-    }
-
-    public GlobalConfig getGlobalConfig() {
-        return globalConfig;
     }
 
     public Screen getScreen() {
         return SCREEN_THREAD_LOCAL.get();
+    }
+
+    public Map<CucumberPage, PageRouteInfo> getMappings() {
+        return mappings;
+    }
+
+    public String getBrowserName() {
+        return browserName;
+    }
+
+    public String getBaseUrl() {
+        return baseUrl;
     }
 
     private static Playwright getPlaywright() {

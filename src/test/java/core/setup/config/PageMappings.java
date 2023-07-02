@@ -1,4 +1,4 @@
-package pages.mappings;
+package core.setup.config;
 
 import pages.CreateContact;
 import pages.Playground;

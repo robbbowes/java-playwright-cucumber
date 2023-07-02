@@ -3,7 +3,6 @@ package core.utils;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
-import com.microsoft.playwright.PlaywrightException;
 import core.setup.config.Screen;
 import core.setup.config.TestContext;
 import org.testng.Assert;

@@ -1,7 +1,6 @@
 package core.utils;
 
 import com.microsoft.playwright.Page;
-import core.setup.config.GlobalConfig;
 import core.setup.config.TestContext;
 import core.setup.records.RouteClassResult;
 import pages.abstractions.CucumberPage;
@@ -14,12 +13,11 @@ public class NavigationBehaviour {
 
     public static void navigateToPage(TestContext testContext, String pageId) {
         final Page currentTab = testContext.getScreen().getCurrentTabInfo().currentTab();
-        final GlobalConfig config = testContext.getGlobalConfig();
-        final RouteClassResult result = getResult(config, pageId);
+        final RouteClassResult result = getResult(testContext.getMappings(), pageId);
         final PageRouteInfo routeInfo = result.routeInfo();
         final CucumberPage currentTabClass = result.pageClass();
 
-        final String url = config.getBaseUrl() + routeInfo.route();
+        final String url = testContext.getBaseUrl() + routeInfo.route();
         currentTab.navigate(url);
 
         currentTab.waitForURL(routeInfo.regexPattern());
@@ -28,8 +26,7 @@ public class NavigationBehaviour {
 
     public static void waitForCorrectPage(TestContext testContext, String pageId) {
         final Page currentTab = testContext.getScreen().getCurrentTabInfo().currentTab();
-        final GlobalConfig config = testContext.getGlobalConfig();
-        final RouteClassResult result = getResult(config, pageId);
+        final RouteClassResult result = getResult(testContext.getMappings(), pageId);
         final PageRouteInfo routeInfo = result.routeInfo();
         final CucumberPage currentTabClass = result.pageClass();
 
@@ -37,8 +34,7 @@ public class NavigationBehaviour {
         testContext.getScreen().setCurrentTabInfo(currentTab, currentTabClass);
     }
 
-    public static CucumberPage getCurrentTabClass(GlobalConfig config, Page currentTab) {
-        final Map<CucumberPage, PageRouteInfo> routeMappings = config.getRouteMappings();
+    public static CucumberPage getCurrentTabClass(Map<CucumberPage, PageRouteInfo> routeMappings, Page currentTab) {
         final String url = currentTab.url();
 
         final CucumberPage cucumberPage = routeMappings.entrySet().stream()
@@ -51,9 +47,7 @@ public class NavigationBehaviour {
         return cucumberPage;
     }
 
-    private static RouteClassResult getResult(GlobalConfig config, String pageId) {
-        final Map<CucumberPage, PageRouteInfo> routeMappings = config.getRouteMappings();
-
+    private static RouteClassResult getResult(Map<CucumberPage, PageRouteInfo> routeMappings, String pageId) {
         final RouteClassResult routeClassResult = routeMappings.keySet().stream()
                 .filter(pageClass -> pageId.equals(pageClass.getClass().getSimpleName()))
                 .map(pageClass -> new RouteClassResult(routeMappings.get(pageClass), pageClass))
