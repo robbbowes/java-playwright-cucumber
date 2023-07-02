@@ -1,12 +1,11 @@
 package tests.steps.actions;
 
 import com.microsoft.playwright.Locator;
+import com.microsoft.playwright.assertions.PlaywrightAssertions;
 import core.setup.config.TestContext;
 import core.utils.PageElementLocator;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
-import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 public class Check {
 
@@ -31,13 +30,13 @@ public class Check {
     @Then("the {string} checkbox is checked")
     public void isChecked(String locatorKey) {
         Locator locator = PageElementLocator.getLocator(this.testContext, locatorKey);
-        assertThat(locator).isChecked();
+        PlaywrightAssertions.assertThat(locator).isChecked();
     }
 
     @Then("the {string} checkbox is unchecked")
     public void isUnchecked(String locatorKey) {
         Locator locator = PageElementLocator.getLocator(this.testContext, locatorKey);
-        assertThat(locator).not().isChecked();
+        PlaywrightAssertions.assertThat(locator).not().isChecked();
     }
 
 }

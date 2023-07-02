@@ -21,8 +21,8 @@ public class Click {
         locator.click();
     }
 
-    @Then("I click on the {string} on the aforementioned {string}")
-    public void valueWithTextIsVisible(String childLocatorKey, String locatorLookupKey) {
+    @Then("on the {string} I click on the {string}")
+    public void valueWithTextIsVisible(String locatorLookupKey, String childLocatorKey) {
         Locator parentLocator = this.testContext.getScreen().getLocatorHistory().get(locatorLookupKey);
         Assert.assertNotNull(String.format("No locator found for '%s'", locatorLookupKey));
 
