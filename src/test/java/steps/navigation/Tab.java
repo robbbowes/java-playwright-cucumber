@@ -28,7 +28,7 @@ public class Tab {
 
         currentTab.bringToFront();
 
-        final CucumberPage currentTabClass = NavigationBehaviour.getCurrentTabClass(testContext.getMappings(), currentTab);
+        final CucumberPage currentTabClass = NavigationBehaviour.getCurrentTabClass(this.testContext.getMappings(), currentTab);
         this.testContext.getScreen().setCurrentTabInfo(currentTab, currentTabClass);
     }
 
@@ -43,8 +43,8 @@ public class Tab {
         newTab.waitForLoadState(LoadState.DOMCONTENTLOADED);
         newTab.bringToFront();
 
-        final CucumberPage currentTabClass = NavigationBehaviour.getCurrentTabClass(testContext.getMappings(), newTab);
-        testContext.getScreen().setCurrentTabInfo(newTab, currentTabClass);
+        final CucumberPage currentTabClass = NavigationBehaviour.getCurrentTabClass(this.testContext.getMappings(), newTab);
+        this.testContext.getScreen().setCurrentTabInfo(newTab, currentTabClass);
 
         NavigationBehaviour.waitForCorrectPage(testContext, pageId);
     }
