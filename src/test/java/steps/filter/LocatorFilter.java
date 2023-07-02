@@ -1,4 +1,4 @@
-package tests.steps.filter;
+package steps.filter;
 
 import com.microsoft.playwright.Locator;
 import core.setup.config.TestContext;

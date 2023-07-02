@@ -1,4 +1,4 @@
-package tests.steps.navigation;
+package steps.navigation;
 
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.LoadState;

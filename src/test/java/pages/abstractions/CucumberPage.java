@@ -1,17 +1,12 @@
 package pages.abstractions;
 
+import com.microsoft.playwright.Locator;
+import com.microsoft.playwright.Page;
+
 import java.util.Map;
 
-public abstract class CucumberPage {
+public interface CucumberPage {
 
-    private final Map<String, String> locators;
-
-    protected CucumberPage(Map<String, String> locators) {
-        this.locators = locators;
-    }
-
-    public Map<String, String> getLocators() {
-        return locators;
-    }
+    Map<String, Locator> getLocators(Page page);
 
 }

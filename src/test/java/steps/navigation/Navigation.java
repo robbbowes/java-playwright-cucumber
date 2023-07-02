@@ -1,4 +1,4 @@
-package tests.steps.navigation;
+package steps.navigation;
 
 import core.setup.config.TestContext;
 import core.utils.NavigationBehaviour;

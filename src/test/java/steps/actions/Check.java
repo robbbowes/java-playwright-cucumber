@@ -1,4 +1,4 @@
-package tests.steps.actions;
+package steps.actions;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.assertions.PlaywrightAssertions;

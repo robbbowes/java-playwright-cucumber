@@ -1,4 +1,4 @@
-package tests.steps;
+package steps;
 
 import core.setup.config.TestContext;
 import io.cucumber.java.After;

@@ -13,20 +13,20 @@ public class PageElementLocator {
 
     public static Locator getLocator(TestContext testContext, String locatorKey) {
         final Screen screen = testContext.getScreen();
-        final Page page = screen.getCurrentTabInfo().currentTab();
-        final String elementLocator = PageElementLocator.queryClassForLocator(screen, locatorKey);
+        final Locator elementLocator = PageElementLocator.queryClassForLocator(screen, locatorKey);
 
         final String errorMessage = String.format("No locator with key '%s' found in the mappings of the '%s' class.",
                 locatorKey, testContext.getScreen().getCurrentTabInfo().currentTabClass().getClass().getSimpleName());
         Assert.assertNotNull(elementLocator, errorMessage);
 
-        return page.locator(elementLocator);
+        return elementLocator;
     }
 
-    private static String queryClassForLocator(Screen screen, String locatorKey) {
-        final Map<String, String> locators = screen.getCurrentTabInfo()
+    private static Locator queryClassForLocator(Screen screen, String locatorKey) {
+        final Page page = screen.getCurrentTabInfo().currentTab();
+        final Map<String, Locator> locators = screen.getCurrentTabInfo()
                 .currentTabClass()
-                .getLocators();
+                .getLocators(page);
 
         Assert.assertNotNull(locators);
         return locators.get(locatorKey);
